@@ -1,21 +1,24 @@
-const modalAutor = new bootstrap.Modal(document.getElementById('modalAutor'))
+document.addEventListener('DOMContentLoaded', function () {
+    // Botones de editar
+    const editButtons = document.querySelectorAll('.btnEditaru');
+    const modal = new bootstrap.Modal(document.getElementById('modalAutor'));
 
-const on = (element,event,selector,handler) => {
-    element.addEventListener(event, e => {
-        if (e.target.closest(selector))
-        {
-            handler(e)
-        }
-    })
-}
+    editButtons.forEach(button => {
+      button.addEventListener('click', function () {
+        const row = this.closest('tr');
+        const id = row.cells[0].textContent;
+        const idAutor = row.cells[1].textContent;
+        const nombre = row.cells[2].textContent;
+        const apellido = row.cells[3].textContent;
+        const pais = row.cells[4].textContent;
 
-on(document, 'click', '.btnEditaru', e => {
-    console.log("si entro")
-    const fila = e.target.parentNode.parentNode
-    e_id.value = fila.children[0].innerHTML
-    e_aut.value = fila.children[1].innerHTML
-    e_nom.value = fila.children[2].innerHTML
-    e_ape.value = fila.children[3].innerHTML
-    e_pa.value = fila.children[4].innerHTML
-    modalAutor.show();
-})
+        document.getElementById('e_id').value = id;
+        document.getElementById('e_aut').value = idAutor;
+        document.getElementById('e_nom').value = nombre;
+        document.getElementById('e_ape').value = apellido;
+        document.getElementById('e_pa').value = pais;
+
+        modal.show();
+      });
+    });
+  });
